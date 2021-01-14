@@ -1,5 +1,7 @@
 declare type PropertiesType = string | number | boolean | Array<string>;
 
+declare type PropertiesObjectType = { [key: string]: PropertiesType }
+
 declare module 'sensorsdata-analytics-react-native'{
 
   /**
@@ -20,14 +22,14 @@ declare module 'sensorsdata-analytics-react-native'{
    * @param profile 用户属性
 
    */
-   export function profileSet(profile: Map<string,PropertiesType>): void
+   export function profileSet(profile: PropertiesObjectType): void
 
   /**
    * 记录初次设定的属性
    *
    * @param profile 用户属性
    */
-   export function profileSetOnce(profile: Map<string,PropertiesType>): void
+   export function profileSetOnce(profile: PropertiesObjectType): void
 
   /**
    * 追踪事件
@@ -35,7 +37,7 @@ declare module 'sensorsdata-analytics-react-native'{
    * @param event 事件名称
    * @param properties 事件属性
    */
-   export function track(event: string, properties?: Map<string,PropertiesType> | null): void;
+   export function track(event: string, properties?: PropertiesObjectType | null): void;
 
   /**
    * 事件开始
@@ -50,7 +52,7 @@ declare module 'sensorsdata-analytics-react-native'{
    * @param event 事件名称
    * @param properties 事件属性
    */
-   export function trackTimerEnd(event: string, properties?: Map<string,PropertiesType> | null): void;
+   export function trackTimerEnd(event: string, properties?: PropertiesObjectType | null): void;
 
   /**
    * 清除所有事件计时器
@@ -63,7 +65,7 @@ declare module 'sensorsdata-analytics-react-native'{
    * @param eventName 事件名称
    * @param properties 事件属性
    */
-   export function trackInstallation(eventName: string, properties?: Map<string,PropertiesType> | null): void;
+   export function trackInstallation(eventName: string, properties?: PropertiesObjectType | null): void;
 
   /**
    * 切换页面的时候调用，用于记录 $AppViewScreen 事件..
@@ -71,7 +73,7 @@ declare module 'sensorsdata-analytics-react-native'{
    * @param url 页面 url
    * @param properties 事件属性
    */
-   export function trackViewScreen(url: string, properties?: Map<string,PropertiesType> | null): void;
+   export function trackViewScreen(url: string, properties?: PropertiesObjectType | null): void;
 
   /**
    * 给一个数值类型的 Profile 增加一个数值. 只能对数值型属性进行操作，若该属性
@@ -117,7 +119,7 @@ declare module 'sensorsdata-analytics-react-native'{
    *
    * @param properties 公共属性
    */
-   export function registerSuperProperties(properties:Map<string,PropertiesType>): void;
+   export function registerSuperProperties(properties: PropertiesObjectType): void;
 
   /**
    * 删除某个公共属性
@@ -203,7 +205,7 @@ declare module 'sensorsdata-analytics-react-native'{
    * @param itemId item ID
    * @param properties item 相关属性
    */
-   export function itemSet(itemType: string, itemId: string, properties: Map<string,PropertiesType> | null): void;
+   export function itemSet(itemType: string, itemId: string, properties: PropertiesObjectType | null): void;
 
   /**
    * 删除 item
@@ -216,12 +218,12 @@ declare module 'sensorsdata-analytics-react-native'{
   /**
    * 获取事件公共属性
    */
-   export function getSuperPropertiesPromise(): Promise<Map<string,PropertiesType>>;
+   export function getSuperPropertiesPromise(): Promise<PropertiesObjectType>;
 
   /**
    * 返回预置属性
    */
-   export function getPresetPropertiesPromise(): Promise<Map<string,PropertiesType>>;
+   export function getPresetPropertiesPromise(): Promise<PropertiesObjectType>;
 
   /**
    * 获取当前用户的 loginId 若调用前未调用 {@link #login(String)} 设置用户的 loginId，会返回 null
@@ -271,7 +273,7 @@ declare module 'sensorsdata-analytics-react-native'{
    *
    * @param properties 渠道追踪事件的属性
    */
-   export function trackAppInstall(properties: Map<string,PropertiesType> | null)
+   export function trackAppInstall(properties: PropertiesObjectType | null)
 
   /************** Android only start *****************/
   /**
